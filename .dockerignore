@@ -1,0 +1,9 @@
+node_modules
+.output
+.git
+.vscode
+.idea
+dist
+Dockerfile
+docker-compose.yml
+README.md
