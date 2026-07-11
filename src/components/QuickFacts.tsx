@@ -77,35 +77,29 @@ export default function QuickFacts() {
   ];
 
   return (
-    <section className="rounded-2xl mt-10 p-6 sm:p-8">
-      <h1 className=" font-bold text-center text-3xl lg:text-6xl md:text-2xl mb-4">
-        Quick Facts About Us
-      </h1>
+    <div className="mx-auto grid max-w-3xl grid-cols-2 gap-4 text-center">
+      {statItems.map((item, index) => {
+        const isLastSingleItem =
+          statItems.length % 2 === 1 && index === statItems.length - 1;
 
-      <div className="mx-auto grid max-w-3xl grid-cols-2 gap-4 text-center">
-        {statItems.map((item, index) => {
-          const isLastSingleItem =
-            statItems.length % 2 === 1 && index === statItems.length - 1;
-
-          return (
+        return (
+          <div
+            className={`rise-in ${isLastSingleItem ? "col-span-2 flex justify-center" : ""}`}
+            key={item.label}
+          >
             <div
-              className={`rise-in ${isLastSingleItem ? "col-span-2 flex justify-center" : ""}`}
-              key={item.label}
+              className={`flex flex-col items-center ${isLastSingleItem ? "w-full max-w-xs" : ""}`}
             >
-              <div
-                className={`flex flex-col items-center ${isLastSingleItem ? "w-full max-w-xs" : ""}`}
-              >
-                <div className="text-5xl font-semibold leading-none text-[rgb(191,0,0)] sm:text-6xl">
-                  <AnimatedCounter value={item.value} />
-                </div>
-                <div className="mt-2 text-base text-gray-700 sm:text-lg">
-                  {item.label}
-                </div>
+              <div className="text-5xl font-semibold leading-none text-[rgb(191,0,0)] sm:text-6xl">
+                <AnimatedCounter value={item.value} />
+              </div>
+              <div className="mt-2 text-base text-gray-700 sm:text-lg">
+                {item.label}
               </div>
             </div>
-          );
-        })}
-      </div>
-    </section>
+          </div>
+        );
+      })}
+    </div>
   );
 }

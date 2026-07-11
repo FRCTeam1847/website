@@ -53,7 +53,12 @@ function About() {
         </div>
       </section>
 
-      <QuickFacts />
+      <section className="rounded-2xl mt-10 p-6 sm:p-8">
+        <h1 className=" font-bold text-center text-3xl lg:text-6xl md:text-2xl mb-4">
+          Quick Facts About Us
+        </h1>
+        <QuickFacts />
+      </section>
 
       <section className=" rounded-2xl p-2 sm:p-8">
         <h2 className=" font-bold text-red-500 text-center underline text-4xl lg:text-6xl md:text-5xl">
