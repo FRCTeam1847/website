@@ -52,7 +52,7 @@ export default function Header() {
               className="mb-1 h-10 w-12 shrink-0 sm:h-12 sm:w-14 md:mb-0 md:mr-2 md:h-13 md:w-16.25"
               width="65px"
             />
-            <span className="leading-tight">Wyandotte Robotics</span>
+            <span className="leading-tight font-bold">Wyandotte Robotics</span>
           </Link>
         </h2>
 
