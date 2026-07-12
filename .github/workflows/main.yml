@@ -7,38 +7,53 @@ on:
             - dev
 
 jobs:
-  build-and-deploy:
-    runs-on: self-hosted
+    build-and-deploy:
+        runs-on: self-hosted
 
-    steps:
-      # 1) Checkout & restore Astro cache
-      - name: Checkout
-        uses: actions/checkout@v4
+        env:
+            ENV_FILE_PATH: /etc/wyandotte-robotics/.env.local
 
-      # 3) Stop previous Compose stack (reusing same project name)
-      - name: Stop previous stack (if running)
-        run: |
-          docker compose -f docker-compose.yml \
-            --project-name wyandotte-robotics \
-            down --remove-orphans || true
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
 
-      # 4) Build + start the stack
-      - name: Build & Up via Compose
-        run: |
-          docker compose -f docker-compose.yml \
-            --project-name wyandotte-robotics \
-            up -d --build --force-recreate
+            - name: Set up Docker Buildx
+              uses: docker/setup-buildx-action@v4
 
-      # 5) Health‐check the site
-      - name: Check site health
-        run: |
-          echo "Waiting for site to respond on port 3000..."
-          for i in {1..10}; do
-            curl -sf http://localhost:3000/ && exit 0
-            sleep 3
-          done
-          echo "Site did not respond!" && exit 1
+            - name: Verify server env file exists
+              run: |
+                  if [ ! -f "$ENV_FILE_PATH" ]; then
+                  echo "Env file not found: $ENV_FILE_PATH"
+                  exit 1
+                  fi
+              shell: bash
 
-      # 6) Prune dangling Docker images
-      - name: Docker image prune
-        run: docker image prune -f
+            - name: Copy env file into build context
+              run: |
+                  cp "$ENV_FILE_PATH" "$GITHUB_WORKSPACE/.env.local"
+              shell: bash
+
+            - name: Stop previous stack (if running)
+              run: |
+                  docker compose -f docker-compose.yml \
+                    --project-name wyandotte-robotics \
+                    down --remove-orphans || true
+
+            - name: Build & Up via Compose
+              run: |
+                  docker compose -f docker-compose.yml \
+                    --project-name wyandotte-robotics \
+                    up -d --build --force-recreate
+
+            - name: Check site health
+              run: |
+                  echo "Waiting for site to respond on port 3000..."
+                  for i in {1..10}; do
+                    curl -sf http://localhost:3000/ && exit 0
+                    sleep 3
+                  done
+                  echo "Site did not respond!" && exit 1
+
+            # 6) Prune dangling Docker images
+            - name: Docker image prune
+              run: docker image prune -f
