@@ -12,6 +12,7 @@ jobs:
 
         env:
             ENV_FILE_PATH: /etc/wyandotte-robotics/.env.local
+            COMPOSE_PROJECT_NAME: wyandotte-robotics
 
         steps:
             - name: Checkout
@@ -33,17 +34,21 @@ jobs:
                   cp "$ENV_FILE_PATH" "$GITHUB_WORKSPACE/.env.local"
               shell: bash
 
-            - name: Stop previous stack (if running)
-              run: |
-                  docker compose -f docker-compose.yml \
-                    --project-name wyandotte-robotics \
-                    down --remove-orphans || true
+            # - name: Stop previous stack (if running)
+            #   run: |
+            #       docker compose -f docker-compose.yml \
+            #         --project-name wyandotte-robotics \
+            #         down --remove-orphans || true
 
-            - name: Build & Up via Compose
+            # - name: Build & Up via Compose
+            #   run: |
+            #       docker compose -f docker-compose.yml \
+            #         --project-name wyandotte-robotics \
+            #         up -d --build --force-recreate
+            - name: Build & Deploy
               run: |
-                  docker compose -f docker-compose.yml \
-                    --project-name wyandotte-robotics \
-                    up -d --build --force-recreate
+                  docker compose build
+                  docker compose up -d --remove-orphans
 
             - name: Check site health
               run: |
@@ -55,5 +60,5 @@ jobs:
                   echo "Site did not respond!" && exit 1
 
             # 6) Prune dangling Docker images
-            - name: Docker image prune
+            - name: Cleanup old images
               run: docker image prune -f
