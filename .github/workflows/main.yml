@@ -17,8 +17,8 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v4
 
-            - name: Set up Docker Buildx
-              uses: docker/setup-buildx-action@v4
+            # - name: Set up Docker Buildx
+            #   uses: docker/setup-buildx-action@v4
 
             - name: Verify server env file exists
               run: |
@@ -47,9 +47,9 @@ jobs:
 
             - name: Check site health
               run: |
-                  echo "Waiting for site to respond on port 3000..."
+                  echo "Waiting for site to respond on port 3001..."
                   for i in {1..10}; do
-                    curl -sf http://localhost:3000/ && exit 0
+                    curl -sf http://localhost:3001/ && exit 0
                     sleep 3
                   done
                   echo "Site did not respond!" && exit 1
