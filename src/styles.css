@@ -2,7 +2,6 @@
 @import "@fontsource-variable/inter/wght.css";
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
-
 @theme {
   --font-sans: "Inter Variable", sans-serif;
 }
@@ -27,6 +26,7 @@
   --link-bg-hover: rgba(255, 255, 255, 0.9);
   --hero-a: rgba(79, 184, 178, 0.36);
   --hero-b: rgba(47, 106, 74, 0.2); */
+  --wyandotte-red: rgb(191, 0, 0);
 }
 
 /* :root[data-theme="dark"] {
@@ -159,7 +159,6 @@ pre code {
   width: min(1440px, calc(100% - 2rem));
   margin-inline: auto;
 }
-
 
 .island-shell {
   border: 1px solid var(--line);

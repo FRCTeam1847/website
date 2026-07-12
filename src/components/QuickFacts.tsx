@@ -90,7 +90,7 @@ export default function QuickFacts() {
             <div
               className={`flex flex-col items-center ${isLastSingleItem ? "w-full max-w-xs" : ""}`}
             >
-              <div className="text-5xl font-semibold leading-none text-[rgb(191,0,0)] sm:text-6xl">
+              <div className="text-5xl font-semibold leading-none text-(--wyandotte-red) sm:text-6xl">
                 <AnimatedCounter value={item.value} />
               </div>
               <div className="mt-2 text-base text-gray-700 sm:text-lg">
