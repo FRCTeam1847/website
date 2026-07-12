@@ -1,31 +1,19 @@
-# Build stage
-FROM node:latest AS builder
+FROM node:26-alpine
 
 WORKDIR /app
 
-COPY package.json pnpm-lock.yaml ./
+RUN npm install -g pnpm
 
-RUN corepack enable
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+
 RUN pnpm install --frozen-lockfile
 
 COPY . .
 
 RUN pnpm build
-
-# Runtime stage
-FROM node:latest
-
-WORKDIR /app
-
 ENV NODE_ENV=production
+ENV HOST=0.0.0.0
 ENV PORT=3000
-
-RUN corepack enable
-
-COPY package.json pnpm-lock.yaml ./
-RUN pnpm install --prod --frozen-lockfile
-
-COPY --from=builder /app/.output ./.output
 
 EXPOSE 3000
 
