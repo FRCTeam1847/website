@@ -13,6 +13,7 @@ jobs:
         env:
             ENV_FILE_PATH: /etc/wyandotte-robotics/.env.local
             COMPOSE_PROJECT_NAME: wyandotte-robotics
+            DOCKER_BUILDKIT: 1
 
         steps:
             - name: Checkout

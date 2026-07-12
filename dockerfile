@@ -8,6 +8,7 @@ COPY package.json pnpm-lock.yaml pnpm-workspace.yaml .env.* ./
 
 RUN pnpm install --frozen-lockfile
 
+COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
 RUN pnpm build
