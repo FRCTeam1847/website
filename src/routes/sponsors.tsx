@@ -12,6 +12,17 @@ import { CircleIcon, ConstructionIcon, FileTextIcon } from "lucide-react";
 
 export const Route = createFileRoute("/sponsors")({
   component: RouteComponent,
+  head: () => ({
+    meta: [
+      {
+        name: "description",
+        content: "Wyandotte Robotics Sponsors",
+      },
+      {
+        title: "Sponsors — Wyandotte Robotics",
+      },
+    ],
+  }),
 });
 
 function RouteComponent() {

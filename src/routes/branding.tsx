@@ -12,6 +12,17 @@ import { CircleIcon, FileTextIcon } from "lucide-react";
 
 export const Route = createFileRoute("/branding")({
   component: RouteComponent,
+  head: () => ({
+    meta: [
+      {
+        name: "description",
+        content: "Branding Standards",
+      },
+      {
+        title: "Branding — Wyandotte Robotics",
+      },
+    ],
+  }),
 });
 
 function RouteComponent() {

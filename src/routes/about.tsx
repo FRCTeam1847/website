@@ -3,6 +3,17 @@ import QuickFacts from "../components/QuickFacts";
 
 export const Route = createFileRoute("/about")({
   component: About,
+  head: () => ({
+    meta: [
+      {
+        name: "description",
+        content: "About Wyandotte Robotics",
+      },
+      {
+        title: "About — Wyandotte Robotics",
+      },
+    ],
+  }),
 });
 
 function About() {
@@ -64,7 +75,9 @@ function About() {
         </h2>
 
         <section className="island-shell rounded-2xl mt-8 p-0 sm:p-4">
-          <h3 className="scroll-m-20 text-xl font-semibold tracking-tight">Our Mission</h3>
+          <h3 className="scroll-m-20 text-xl font-semibold tracking-tight">
+            Our Mission
+          </h3>
 
           <p className="leading-7 not-first:mt-6 text-muted-foreground">
             Wyandotte Robotics, nicknamed WRATH, is FRC Team 1847 based in
@@ -76,7 +89,9 @@ function About() {
           </p>
         </section>
         <section className="island-shell rounded-2xl mt-8 p-0 sm:p-4">
-          <h3 className="scroll-m-20 text-xl font-semibold tracking-tight">Our Role in FIRST Robotics</h3>
+          <h3 className="scroll-m-20 text-xl font-semibold tracking-tight">
+            Our Role in FIRST Robotics
+          </h3>
 
           <p className="leading-7 not-first:mt-6 text-muted-foreground">
             As part of the FIRST Robotics community, we share a commitment to
