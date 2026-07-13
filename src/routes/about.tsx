@@ -9,18 +9,16 @@ function About() {
   return (
     <main className="page-wrap px-2 py-8">
       <section className=" rounded-2xl p-0 sm:p-6">
-        <h1 className=" font-bold text-center text-6xl lg:text-7xl md:text-6xl">
+        <h1 className="scroll-m-20 text-center text-4xl font-extrabold tracking-tight text-balance">
           About Wyandotte Robotics
         </h1>
-        <div className="rise-in text-xl m-6 max-w-3xl mx-auto text-center">
-          <p className="text-gray-700">
+        <div className="rise-in  m-6 max-w-3xl mx-auto text-center">
+          <p className="leading-7 not-first:mt-6 text-muted-foreground">
             Learn about our history, mission, and achievements as part of the
             FIRST Robotics Competition. Scroll down for frequently asked
             questions and discover how you can join or support our team!
           </p>
-          <p className="mt-5 text-2xl sm:text-xl md:text-xl text-gray-950">
-            Contacts
-          </p>
+          <p className="leading-7 not-first:mt-6">Contacts</p>
           <ul className="text-base">
             <li>
               <strong>Head Coach:</strong> Oscar Campos Soto -{" "}
@@ -54,21 +52,21 @@ function About() {
       </section>
 
       <section className="rounded-2xl mt-10 p-6 sm:p-8">
-        <h1 className=" font-bold text-center text-3xl lg:text-6xl md:text-2xl mb-4">
+        <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold first:mt-0 text-center">
           Quick Facts About Us
-        </h1>
+        </h2>
         <QuickFacts />
       </section>
 
-      <section className=" rounded-2xl p-2 sm:p-8">
-        <h2 className=" font-bold text-red-500 text-center underline text-4xl lg:text-6xl md:text-5xl">
+      <section className="rise-in rounded-2xl p-2 sm:p-8">
+        <h2 className="scroll-m-20 text-3xl font-semibold tracking-tight text-center">
           Who We Are
         </h2>
 
         <section className="island-shell rounded-2xl mt-8 p-0 sm:p-4">
-          <h3 className="font-bold text-2xl m-2">Our Mission</h3>
+          <h3 className="scroll-m-20 text-xl font-semibold tracking-tight">Our Mission</h3>
 
-          <p className="text-gray-600 text-md m-2">
+          <p className="leading-7 not-first:mt-6 text-muted-foreground">
             Wyandotte Robotics, nicknamed WRATH, is FRC Team 1847 based in
             Kansas City, Kansas. Established in 2006, we are a high school
             robotics team representing Wyandotte High School in the FIRST
@@ -78,9 +76,9 @@ function About() {
           </p>
         </section>
         <section className="island-shell rounded-2xl mt-8 p-0 sm:p-4">
-          <h3 className="font-bold text-2xl m-2">Our Role in FIRST Robotics</h3>
+          <h3 className="scroll-m-20 text-xl font-semibold tracking-tight">Our Role in FIRST Robotics</h3>
 
-          <p className="text-gray-600 text-md m-2">
+          <p className="leading-7 not-first:mt-6 text-muted-foreground">
             As part of the FIRST Robotics community, we share a commitment to
             Gracious Professionalism® and Coopertition®. These values guide our
             efforts to encourage collaboration, mentorship, and fair
