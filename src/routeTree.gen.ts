@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SponsorsRouteImport } from './routes/sponsors'
 import { Route as ResourcesRouteImport } from './routes/resources'
+import { Route as EventsRouteImport } from './routes/events'
 import { Route as BrandingRouteImport } from './routes/branding'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
@@ -24,6 +25,11 @@ const SponsorsRoute = SponsorsRouteImport.update({
 const ResourcesRoute = ResourcesRouteImport.update({
   id: '/resources',
   path: '/resources',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EventsRoute = EventsRouteImport.update({
+  id: '/events',
+  path: '/events',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BrandingRoute = BrandingRouteImport.update({
@@ -51,6 +57,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/branding': typeof BrandingRoute
+  '/events': typeof EventsRoute
   '/resources': typeof ResourcesRoute
   '/sponsors': typeof SponsorsRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
@@ -59,6 +66,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/branding': typeof BrandingRoute
+  '/events': typeof EventsRoute
   '/resources': typeof ResourcesRoute
   '/sponsors': typeof SponsorsRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
@@ -68,6 +76,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/branding': typeof BrandingRoute
+  '/events': typeof EventsRoute
   '/resources': typeof ResourcesRoute
   '/sponsors': typeof SponsorsRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
@@ -78,6 +87,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/branding'
+    | '/events'
     | '/resources'
     | '/sponsors'
     | '/demo/tanstack-query'
@@ -86,6 +96,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/branding'
+    | '/events'
     | '/resources'
     | '/sponsors'
     | '/demo/tanstack-query'
@@ -94,6 +105,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/branding'
+    | '/events'
     | '/resources'
     | '/sponsors'
     | '/demo/tanstack-query'
@@ -103,6 +115,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   BrandingRoute: typeof BrandingRoute
+  EventsRoute: typeof EventsRoute
   ResourcesRoute: typeof ResourcesRoute
   SponsorsRoute: typeof SponsorsRoute
   DemoTanstackQueryRoute: typeof DemoTanstackQueryRoute
@@ -122,6 +135,13 @@ declare module '@tanstack/react-router' {
       path: '/resources'
       fullPath: '/resources'
       preLoaderRoute: typeof ResourcesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/events': {
+      id: '/events'
+      path: '/events'
+      fullPath: '/events'
+      preLoaderRoute: typeof EventsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/branding': {
@@ -159,6 +179,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   BrandingRoute: BrandingRoute,
+  EventsRoute: EventsRoute,
   ResourcesRoute: ResourcesRoute,
   SponsorsRoute: SponsorsRoute,
   DemoTanstackQueryRoute: DemoTanstackQueryRoute,
