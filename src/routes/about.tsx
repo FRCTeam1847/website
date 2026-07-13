@@ -1,5 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import QuickFacts from "../components/QuickFacts";
+import Features from "../components/layouts/Features";
+import { AwardIcon, CalendarIcon, TrophyIcon } from "lucide-react";
 
 export const Route = createFileRoute("/about")({
   component: About,
@@ -102,6 +104,72 @@ function About() {
             innovation.
           </p>
         </section>
+      </section>
+
+      <section>
+        <Features
+          title="Our Values"
+          subtitle="What drives us"
+          items={[
+            {
+              title: "Innovation",
+              description:
+                "We continually push boundaries to create innovative solutions and designs for robotics.",
+            },
+            {
+              title: "Teamwork",
+              description:
+                "Collaboration and mentorship are at the core of everything we do, both on and off the field.",
+            },
+            {
+              title: "Community Engagement",
+              description:
+                "We inspire and support our local community to embrace STEM and its endless possibilities.",
+            },
+          ]}
+        />
+
+        <Features
+          title="Our Achievements"
+          subtitle="Celebrating our success"
+          items={[
+            {
+              title: "Regional Finalists - 2026 Heartland Regional",
+              description:
+                "Competed at the Heartland Regional in Shawnee, KS as the second pick of Alliance 4, alongside captain 9126 and 5801.",
+              icon: <TrophyIcon />,
+            },
+            {
+              title: "Regional Finalists - 2025 Heartland Regional",
+              description:
+                "Competed at the Heartland Regional in Shawnee, KS as the first pick of Alliance 2, alongside captain 1108 and 9316. Team 1847 finished Rank 5 with a record of 12-5-0 and was eliminated in the Finals.",
+              icon: <TrophyIcon />,
+            },
+            {
+              title: "Seasons Competed",
+              description: `${new Date().getFullYear() - 2006} seasons since our rookie year.`,
+              icon: <CalendarIcon />,
+            },
+            {
+              title: "Regional Finalists - 2022 Greater Kansas City Regional",
+              description:
+                "Proudly competed as the second pick of Alliance 2, alongside team captain 5801 - CTC Inspire and 1710 - The Ravonics Revolution.",
+              icon: <AwardIcon />,
+            },
+            {
+              title: "Alliance 8 Captain - 2024 Cow Town ThrowDown",
+              description:
+                "Led Alliance 8 as captain alongside teams 1730, 9410, and 2345 at the Cow Town ThrowDown in Lee’s Summit. Despite a strong effort, we were eliminated in Match 9 by Alliance 7.",
+              icon: <AwardIcon />,
+            },
+            {
+              title: "Alliance 5 Competitors - 2016 Cow Town ThrowDown",
+              description:
+                "Competed as part of Alliance 5 at the 2016 Cow Town ThrowDown in Lee’s Summit, captained by Team 3937, alongside teams 3928 and 1775. Despite a strong effort, the alliance was eliminated in the playoffs.",
+              icon: <AwardIcon />,
+            },
+          ]}
+        />
       </section>
     </main>
   );
