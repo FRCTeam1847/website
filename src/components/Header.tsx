@@ -1,9 +1,36 @@
 import { Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 // import ThemeToggle from "./ThemeToggle";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const navRef = useRef<HTMLElement | null>(null);
+
+  const closeMenus = () => {
+    setOpenDropdown(null);
+    setIsMenuOpen(false);
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (navRef.current && !navRef.current.contains(event.target as Node)) {
+        closeMenus();
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const handleDropdownToggle =
+    (text: string) => (event: React.MouseEvent<HTMLElement>) => {
+      event.preventDefault();
+      setOpenDropdown((current) => (current === text ? null : text));
+    };
 
   const links = [
     {
@@ -15,6 +42,10 @@ export default function Header() {
       href: "/about",
     },
     {
+      text: "Sponsors",
+      href: "/sponsors",
+    },
+    {
       text: "Resources",
       links: [
         {
@@ -23,7 +54,7 @@ export default function Header() {
         },
         {
           text: "Branding",
-          href: "/resources/branding",
+          href: "/branding",
         },
       ],
     },
@@ -39,12 +70,15 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-(--line) px-4 backdrop-blur-lg">
-      <nav className="page-wrap flex flex-wrap items-center justify-between gap-x-2 gap-y-3 py-3 sm:py-4">
+      <nav
+        ref={navRef}
+        className="page-wrap flex flex-wrap items-center justify-between gap-x-2 gap-y-3 py-3 sm:py-4"
+      >
         <h2 className="m-0 shrink-0 text-base font-semibold tracking-tight">
           <Link
             to="/"
             className="inline-flex items-center gap-2 px-3 py-1.5 text-xl sm:text-2xl md:text-3xl"
-            onClick={() => setIsMenuOpen(false)}
+            onClick={closeMenus}
           >
             <img
               src="/images/1847-mascot-color.png"
@@ -90,8 +124,15 @@ export default function Header() {
           {links.map(({ text, href, links: subLinks }) => {
             if (subLinks?.length) {
               return (
-                <details key={text} className="group relative">
-                  <summary className="nav-link flex cursor-pointer list-none items-center gap-1 text-black">
+                <details
+                  key={text}
+                  className="group relative"
+                  open={openDropdown === text}
+                >
+                  <summary
+                    className="nav-link flex cursor-pointer list-none items-center gap-1 text-black"
+                    onClick={handleDropdownToggle(text)}
+                  >
                     {text}
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -114,6 +155,7 @@ export default function Header() {
                         key={text2}
                         to={href2}
                         className="block rounded-lg px-3 py-2 text-xl no-underline transition hover:bg-gray-200 hover:text-black"
+                        onClick={closeMenus}
                       >
                         {text2}
                       </Link>
@@ -129,6 +171,7 @@ export default function Header() {
                 to={href}
                 className="nav-link"
                 activeProps={{ className: "nav-link is-active" }}
+                onClick={closeMenus}
               >
                 {text}
               </Link>
@@ -142,8 +185,15 @@ export default function Header() {
               {links.map(({ text, href, links: sublinks }) => {
                 if (sublinks?.length) {
                   return (
-                    <details key={text} className="group">
-                      <summary className="flex cursor-pointer list-none items-center justify-between rounded-lg px-3 py-2 font-semibold text-black">
+                    <details
+                      key={text}
+                      className="group"
+                      open={openDropdown === text}
+                    >
+                      <summary
+                        className="flex cursor-pointer list-none items-center justify-between rounded-lg px-3 py-2 font-semibold text-black"
+                        onClick={handleDropdownToggle(text)}
+                      >
                         <span>{text}</span>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -166,7 +216,7 @@ export default function Header() {
                             key={text2}
                             to={href2}
                             className="rounded-lg px-3 py-2 text-base text-black transition hover:bg-gray-200 hover:text-black"
-                            onClick={() => setIsMenuOpen(false)}
+                            onClick={closeMenus}
                           >
                             {text2}
                           </Link>
@@ -181,7 +231,7 @@ export default function Header() {
                     key={text}
                     to={href}
                     className="rounded-lg px-3 py-2 font-semibold text-black transition hover:bg-gray-200 hover:text-black"
-                    onClick={() => setIsMenuOpen(false)}
+                    onClick={closeMenus}
                   >
                     {text}
                   </Link>

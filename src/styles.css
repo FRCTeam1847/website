@@ -593,3 +593,18 @@ a {
     @apply font-serif;
   }
 }
+
+  /* Base styles for the PDF object */
+  .pdf-viewer {
+    width: 75%;
+    height: 100%;
+    border: none;
+    justify-self: center;
+  }
+
+  /* Hide the PDF viewer on small screens */
+  @media (max-width: 768px) {
+    .object-container {
+      display: none;
+    }
+  }

@@ -92,6 +92,16 @@ function RouteComponent() {
                 text: "Download Sponsor Packet",
               },
             },
+            {
+              title: "Team Branding Guidelines",
+              description: "Our Branding Guidelines",
+              icon: <FileTextIcon />,
+              callToAction: {
+                href: "/pdf/Wyandotte-Robotics-Branding-Standards-V1.pdf",
+                download: "Wyandotte-Robotics-Branding-Standards-V1.pdf",
+                text: "Download Branding Guidelines",
+              },
+            },
           ]}
         />
       </section>
