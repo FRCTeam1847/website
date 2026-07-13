@@ -19,6 +19,7 @@ export default function ItemGrid({ items }: ItemGridProps) {
     <ItemGroup className="grid w-full max-w-8xl mx-auto gap-6 p-4 grid-cols-1 sm:max-w-6xl sm:grid-cols-2 lg:grid-cols-3">
       {items?.map(({ title, description, callToAction, icon }) => (
         <Item
+		key={title}
           variant="outline"
           render={
             <a
