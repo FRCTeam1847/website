@@ -19,13 +19,16 @@ export default function ItemGrid({ items }: ItemGridProps) {
     <ItemGroup className="grid w-full max-w-8xl mx-auto gap-6 p-2 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
       {items?.map(({ title, description, callToAction, icon }) => (
         <Item
-		key={title}
+          key={title}
           variant="outline"
+          role="listitem"
           render={
             <a
               href={callToAction?.href}
+              role="link"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label={title}
             >
               <ItemMedia variant="default">
                 <CircleIcon
