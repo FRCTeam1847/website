@@ -5,6 +5,7 @@ import {
   ItemContent,
   ItemDescription,
   ItemGroup,
+  ItemHeader,
   ItemMedia,
   ItemTitle,
 } from "../ui/item";
@@ -17,9 +18,20 @@ interface ItemGridProps {
 export default function ItemGrid({ items }: ItemGridProps) {
   return (
     <ItemGroup className="grid w-full max-w-8xl mx-auto gap-6 p-2 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-      {items?.map(({ title, description, callToAction, icon }) => {
+      {items?.map(({ title, description, callToAction, icon, imgsrc }) => {
         const itemContent = (
           <>
+            {imgsrc && (
+              <ItemHeader>
+                <img
+                  src={imgsrc}
+                  alt={title}
+                  width={64}
+                  height={64}
+                  className="aspect-square w-full rounded-sm object-fit p-10 bg-muted-foreground"
+                />
+              </ItemHeader>
+            )}
             <ItemMedia variant="default">
               <CircleIcon
                 size={18}
@@ -47,6 +59,7 @@ export default function ItemGrid({ items }: ItemGridProps) {
                 <a
                   href={callToAction.href}
                   target={callToAction.target ?? "_blank"}
+                  download={callToAction.download ?? ""}
                   rel="noopener noreferrer"
                   aria-label={title}
                 >
