@@ -10,6 +10,14 @@ function App() {
   return (
     <main className="page-wrap px-2 py-8">
       <section className=" rounded-2xl p-0 sm:p-6">
+        <div className="flex items-center justify-center ">
+          <img
+            src="/images/1847-round-color.png"
+            alt="Wyandotte Robotics Logo"
+            className="size-auto"
+            loading="lazy"
+          />
+        </div>
         <h1 className="scroll-m-20 text-center text-4xl font-extrabold tracking-tight text-balance">
           Welcome to Wyandotte Robotics (WRATH)
         </h1>
