@@ -17,37 +17,48 @@ interface ItemGridProps {
 export default function ItemGrid({ items }: ItemGridProps) {
   return (
     <ItemGroup className="grid w-full max-w-8xl mx-auto gap-6 p-2 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-      {items?.map(({ title, description, callToAction, icon }) => (
-        <Item
-          key={title}
-          variant="outline"
-          role="listitem"
-          render={
-            <a
-              href={callToAction?.href}
-              role="link"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={title}
-            >
-              <ItemMedia variant="default">
-                <CircleIcon
-                  size={18}
-                  fill="var(--wyandotte-red)"
-                  strokeWidth={0}
-                />
-              </ItemMedia>
-              <ItemContent>
-                <ItemTitle>{title}</ItemTitle>
-                <ItemDescription>{description}</ItemDescription>
-              </ItemContent>
-              <ItemActions>
-                <ItemMedia>{icon}</ItemMedia>
-              </ItemActions>
-            </a>
-          }
-        />
-      ))}
+      {items?.map(({ title, description, callToAction, icon }) => {
+        const itemContent = (
+          <>
+            <ItemMedia variant="default">
+              <CircleIcon
+                size={18}
+                fill="var(--wyandotte-red)"
+                strokeWidth={0}
+              />
+            </ItemMedia>
+            <ItemContent>
+              <ItemTitle>{title}</ItemTitle>
+              <ItemDescription>{description}</ItemDescription>
+            </ItemContent>
+            <ItemActions>
+              <ItemMedia>{icon}</ItemMedia>
+            </ItemActions>
+          </>
+        );
+
+        return (
+          <Item
+            key={title}
+            variant="outline"
+            role="listitem"
+            render={
+              callToAction?.href ? (
+                <a
+                  href={callToAction.href}
+                  target={callToAction.target ?? "_blank"}
+                  rel="noopener noreferrer"
+                  aria-label={title}
+                >
+                  {itemContent}
+                </a>
+              ) : (
+                <div>{itemContent}</div>
+              )
+            }
+          />
+        );
+      })}
     </ItemGroup>
   );
 }
