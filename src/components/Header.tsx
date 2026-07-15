@@ -72,7 +72,7 @@ export default function Header() {
     <header className="sticky top-0 z-50 border-b border-(--line) px-4 backdrop-blur-lg">
       <nav
         ref={navRef}
-        className="flex items-center justify-between gap-x-2 gap-y-3 py-3 sm:py-4"
+        className="flex flex-wrap items-center justify-between gap-x-2 gap-y-3 py-3 sm:py-4"
       >
         <h2 className="m-0 min-w-0 flex-1 text-base font-semibold tracking-tight">
           <Link
@@ -86,7 +86,7 @@ export default function Header() {
               className="mb-1 h-10 w-12 shrink-0 sm:h-12 sm:w-14 md:mb-0 md:mr-2 md:h-13 md:w-16.25"
               width="65px"
             />
-            <span className="min-w-0 flex-1 leading-tight font-bold wrap-break-word">
+            <span className="min-w-0 max-w-full flex-1 leading-tight font-bold wrap-break-word">
               Wyandotte Robotics
             </span>
           </Link>
@@ -182,7 +182,7 @@ export default function Header() {
         </div>
 
         {isMenuOpen ? (
-          <div id="mobile-navigation" className="basis-full lg:hidden">
+          <div id="mobile-navigation" className="mt-1 w-full lg:hidden">
             <div className="flex flex-col gap-2 rounded-2xl border border-(--line) bg-(--surface-strong)/95 p-3 shadow-lg">
               {links.map(({ text, href, links: sublinks }) => {
                 if (sublinks?.length) {
