@@ -72,12 +72,12 @@ export default function Header() {
     <header className="sticky top-0 z-50 border-b border-(--line) px-4 backdrop-blur-lg">
       <nav
         ref={navRef}
-        className="page-wrap flex flex-wrap items-center justify-between gap-x-2 gap-y-3 py-3 sm:py-4"
+        className="flex items-center justify-between gap-x-2 gap-y-3 py-3 sm:py-4"
       >
-        <h2 className="m-0 shrink-0 text-base font-semibold tracking-tight">
+        <h2 className="m-0 min-w-0 flex-1 text-base font-semibold tracking-tight">
           <Link
             to="/"
-            className="inline-flex items-center gap-2 px-3 py-1.5 text-xl sm:text-2xl md:text-3xl"
+            className="flex min-w-0 items-center gap-2 py-1.5 text-xl sm:text-2xl md:text-3xl"
             onClick={closeMenus}
           >
             <img
@@ -86,7 +86,9 @@ export default function Header() {
               className="mb-1 h-10 w-12 shrink-0 sm:h-12 sm:w-14 md:mb-0 md:mr-2 md:h-13 md:w-16.25"
               width="65px"
             />
-            <span className="leading-tight font-bold">Wyandotte Robotics</span>
+            <span className="min-w-0 flex-1 leading-tight font-bold wrap-break-word">
+              Wyandotte Robotics
+            </span>
           </Link>
         </h2>
 
