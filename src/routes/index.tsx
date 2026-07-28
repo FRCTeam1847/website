@@ -3,6 +3,7 @@ import QuickFacts from "../components/QuickFacts";
 import FacebookComponent from "../components/FacebookComponent";
 import InstagramComponent from "../components/InstagramComponent";
 import Features from "../components/layouts/Features";
+import RoundLogo from "../images/1847-round-color.png?quality=85&format=webp"
 
 export const Route = createFileRoute("/")({ component: App });
 
@@ -12,7 +13,7 @@ function App() {
       <section className=" rounded-2xl p-0 sm:p-6">
         <div className="flex items-center justify-center ">
           <img
-            src="/images/1847-round-color.png"
+            src={RoundLogo}
             alt="Wyandotte Robotics Logo"
             className="size-auto"
             loading="lazy"

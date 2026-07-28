@@ -1,6 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { FileTextIcon, ImageIcon } from "lucide-react";
 import Features from "../components/layouts/Features";
+import LogoRoundColor from "../images/1847-round-color.png?format=webp"
+import LogoFullColor from "../images/branding/Full-Logo-In-Color.png?format=webp"
+import MascotInColor from "../images/branding/Mascot-In-Color.png?format=webp"
+import MascotInGray from "../images/branding/Mascot-In-Gray.png?format=webp"
 
 export const Route = createFileRoute("/branding")({
   component: RouteComponent,
@@ -61,7 +65,7 @@ function RouteComponent() {
             title: "Full Logo In Color - png",
             //description: "Download our official branding standards",
             icon: <ImageIcon />,
-            imgsrc: "/images/branding/Full-Logo-In-Color.png",
+            imgsrc: LogoFullColor,
             callToAction: {
               href: "/images/branding/Full-Logo-In-Color.png",
               download: "Full-Logo-In-Color.png",
@@ -71,7 +75,7 @@ function RouteComponent() {
             title: "Full Round Logo In Color - png",
             //description: "Download our official branding standards",
             icon: <ImageIcon />,
-            imgsrc: "/images/branding/Full-Round-Logo-In-Color.png",
+            imgsrc: LogoRoundColor,
             callToAction: {
               href: "/images/branding/Full-Round-Logo-In-Color.png",
               download: "Full-Round-Logo-In-Color.png",
@@ -81,7 +85,7 @@ function RouteComponent() {
             title: "Mascot In Color - png",
             //description: "Download our official branding standards",
             icon: <ImageIcon />,
-            imgsrc: "/images/branding/Mascot-In-Color.png",
+            imgsrc: MascotInColor,
             callToAction: {
               href: "/images/branding/Mascot-In-Color.png",
               download: "Mascot-In-Color.png",
@@ -91,7 +95,7 @@ function RouteComponent() {
             title: "Mascot In Gray - png",
             //description: "Download our official branding standards",
             icon: <ImageIcon />,
-            imgsrc: "/images/branding/Mascot-In-Gray.png",
+            imgsrc: MascotInGray,
             callToAction: {
               href: "/images/branding/Mascot-In-Gray.png",
               download: "Mascot-In-Gray.png",
@@ -103,8 +107,8 @@ function RouteComponent() {
             icon: <ImageIcon />,
             imgsrc: "/images/branding/Team1847-Black.svg",
             callToAction: {
-              href: "/images/branding/Team1847-Black.png",
-              download: "Team1847-Black.png",
+              href: "/images/branding/Team1847-Black.svg",
+              download: "Team1847-Black.svg",
             },
           },
           {
