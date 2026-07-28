@@ -190,17 +190,6 @@ function RouteComponent() {
               },
             },
             {
-              title: "VEX Robotics",
-              description:
-                "VEX Robotics is a leading provider of educational robotics solutions, offering accessible and scalable platforms that promote STEM learning through hands-on experiences and competitions for students from elementary school to university levels.",
-              icon: <ExternalLinkIcon className="size-4" />,
-              callToAction: {
-                text: "Visit Website",
-                href: "https://www.vexrobotics.com/pro",
-                target: "_blank",
-              },
-            },
-            {
               title: "SendCutSend",
               description:
                 "SendCutSend provides FRC teams with fast, affordable custom part manufacturing, including laser cutting, bending, and finishing services, to streamline robot fabrication.",
