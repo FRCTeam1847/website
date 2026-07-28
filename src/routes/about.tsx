@@ -82,12 +82,11 @@ function About() {
           </h3>
 
           <p className="leading-7 not-first:mt-6 text-muted-foreground">
-            Wyandotte Robotics, nicknamed WRATH, is FRC Team 1847 based in
-            Kansas City, Kansas. Established in 2006, we are a high school
-            robotics team representing Wyandotte High School in the FIRST
-            Robotics Competition (FRC). Our team designs, builds, and programs
-            robots to compete in annual challenges against teams worldwide while
-            fostering innovation, teamwork, and community engagement.
+            Our mission is to develop students through hands-on engineering,
+            teamwork, and problem solving. Through the FIRST Robotics
+            Competition, we create opportunities for every student to build
+            technical skills, confidence, leadership, and a passion for lifelong
+            learning while making a positive impact in our community.
           </p>
         </section>
         <section className="island-shell rounded-2xl mt-8 p-0 sm:p-4">
