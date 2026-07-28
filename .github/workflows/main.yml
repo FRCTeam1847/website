@@ -22,7 +22,7 @@ jobs:
             - name: Cleanup before build
               run: |
                   docker system prune -af || true
-                  docker builder prune --keep-storage 5GB -f || true
+                  docker builder prune --reserved-space 5GB -f || true
 
             - name: Verify server env file exists
               run: |
@@ -66,4 +66,4 @@ jobs:
               if: always()
               run: |
                   docker system prune -af || true
-                  docker builder prune --keep-storage 5GB -f || true
+                  docker builder prune --reserved-space 5GB -f || true
