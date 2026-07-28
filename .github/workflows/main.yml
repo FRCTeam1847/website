@@ -19,10 +19,10 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v7
 
-            - name: Cleanup before build
-              run: |
-                  docker system prune -f || true
-                  docker builder prune --reserved-space 5GB -f || true
+            # - name: Cleanup before build
+            #   run: |
+            #       docker system prune -f || true
+            #       docker builder prune --reserved-space 5GB -f || true
 
             - name: Verify server env file exists
               run: |
