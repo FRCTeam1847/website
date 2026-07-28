@@ -63,7 +63,7 @@ jobs:
                   echo "Site did not respond!" && exit 1
 
             - name: Cleanup after build
-              if: always()
+              if: contains('10,20,30', github.run_number)
               run: |
                   docker system prune -f || true
                   docker builder prune --reserved-space 5GB -f || true
