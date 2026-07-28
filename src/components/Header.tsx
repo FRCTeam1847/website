@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 // import ThemeToggle from "./ThemeToggle";
+import logo from "../images/1847-mascot-color.png?format=webp";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -81,10 +82,11 @@ export default function Header() {
             onClick={closeMenus}
           >
             <img
-              src="/images/1847-mascot-color.png"
+              src={logo}
               alt="Logo"
               className="mb-1 h-10 w-12 shrink-0 sm:h-12 sm:w-14 md:mb-0 md:mr-2 md:h-13 md:w-16.25"
-              width="65px"
+              width={65}
+              fetchPriority="high"
             />
             <span className="min-w-0 max-w-full flex-1 leading-tight font-bold wrap-break-word">
               Wyandotte Robotics

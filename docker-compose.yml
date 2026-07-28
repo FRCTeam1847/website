@@ -14,3 +14,28 @@ services:
 
     env_file:
       - .env.local
+    depends_on:
+      - database
+
+  database:
+    image: postgres:17
+    container_name: wyandotte-robotics-db
+    restart: unless-stopped
+
+    ports:
+      - "5432:5432" # Optional. Remove if you don't need external access.
+
+    env_file:
+      - .env.local
+
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
