@@ -34,7 +34,7 @@ function App() {
           </p>
           <div className="pt-8">
             <p className="leading-7 not-first:mt-6">
-              Follow us for updates, team stories, and competition highlights:
+              Follow us for updates, team stories, and competition highlights!
             </p>
             <div className="mt-3 flex flex-wrap justify-center gap-4">
               <FacebookComponent />
