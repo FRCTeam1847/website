@@ -73,7 +73,8 @@ export default function QuickFacts() {
       label: key,
       value,
     })),
-    { label: "World Championship Appearance", value: worldAppearance },
+	{label: "Competitions", value: regionals+offSeason}
+    // { label: "World Championship Appearance", value: worldAppearance },
   ];
 
   return (
@@ -90,10 +91,10 @@ export default function QuickFacts() {
             <div
               className={`flex flex-col items-center ${isLastSingleItem ? "w-full max-w-xs" : ""}`}
             >
-              <div className="text-4xl font-semibold leading-none text-(--wyandotte-red) sm:text-4xl">
-                <AnimatedCounter value={item.value} />
+              <div className="text-4xl font-semibold leading-none text-(--wyandotte-red) sm:text-5xl">
+                <AnimatedCounter value={item.value} />{item.label.includes("Finalists")? "x":null}
               </div>
-              <div className="mt-2 text-base text-gray-700 sm:text-md">
+              <div className="mt-2 text-lg text-gray-700 sm:text-lg">
                 {item.label}
               </div>
             </div>
