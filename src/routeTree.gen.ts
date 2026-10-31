@@ -13,9 +13,11 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as BrandingRouteImport } from './routes/branding'
 import { Route as EventsRouteImport } from './routes/events'
+import { Route as MediaRouteImport } from './routes/media'
 import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as SponsorsRouteImport } from './routes/sponsors'
 import { Route as DemoTanstackQueryRouteImport } from './routes/demo/tanstack-query'
+import { Route as ApiMediaAssetRouteImport } from './routes/api/media/asset'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -37,6 +39,11 @@ const EventsRoute = EventsRouteImport.update({
   path: '/events',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MediaRoute = MediaRouteImport.update({
+  id: '/media',
+  path: '/media',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ResourcesRoute = ResourcesRouteImport.update({
   id: '/resources',
   path: '/resources',
@@ -52,24 +59,33 @@ const DemoTanstackQueryRoute = DemoTanstackQueryRouteImport.update({
   path: '/demo/tanstack-query',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiMediaAssetRoute = ApiMediaAssetRouteImport.update({
+  id: '/api/media/asset',
+  path: '/api/media/asset',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/branding': typeof BrandingRoute
   '/events': typeof EventsRoute
+  '/media': typeof MediaRoute
   '/resources': typeof ResourcesRoute
   '/sponsors': typeof SponsorsRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
+  '/api/media/asset': typeof ApiMediaAssetRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/branding': typeof BrandingRoute
   '/events': typeof EventsRoute
+  '/media': typeof MediaRoute
   '/resources': typeof ResourcesRoute
   '/sponsors': typeof SponsorsRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
+  '/api/media/asset': typeof ApiMediaAssetRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -77,9 +93,11 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/branding': typeof BrandingRoute
   '/events': typeof EventsRoute
+  '/media': typeof MediaRoute
   '/resources': typeof ResourcesRoute
   '/sponsors': typeof SponsorsRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
+  '/api/media/asset': typeof ApiMediaAssetRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -88,27 +106,33 @@ export interface FileRouteTypes {
     | '/about'
     | '/branding'
     | '/events'
+    | '/media'
     | '/resources'
     | '/sponsors'
     | '/demo/tanstack-query'
+    | '/api/media/asset'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
     | '/branding'
     | '/events'
+    | '/media'
     | '/resources'
     | '/sponsors'
     | '/demo/tanstack-query'
+    | '/api/media/asset'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/branding'
     | '/events'
+    | '/media'
     | '/resources'
     | '/sponsors'
     | '/demo/tanstack-query'
+    | '/api/media/asset'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -116,9 +140,11 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   BrandingRoute: typeof BrandingRoute
   EventsRoute: typeof EventsRoute
+  MediaRoute: typeof MediaRoute
   ResourcesRoute: typeof ResourcesRoute
   SponsorsRoute: typeof SponsorsRoute
   DemoTanstackQueryRoute: typeof DemoTanstackQueryRoute
+  ApiMediaAssetRoute: typeof ApiMediaAssetRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -151,6 +177,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EventsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/media': {
+      id: '/media'
+      path: '/media'
+      fullPath: '/media'
+      preLoaderRoute: typeof MediaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/resources': {
       id: '/resources'
       path: '/resources'
@@ -172,6 +205,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DemoTanstackQueryRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/media/asset': {
+      id: '/api/media/asset'
+      path: '/api/media/asset'
+      fullPath: '/api/media/asset'
+      preLoaderRoute: typeof ApiMediaAssetRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -180,9 +220,11 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   BrandingRoute: BrandingRoute,
   EventsRoute: EventsRoute,
+  MediaRoute: MediaRoute,
   ResourcesRoute: ResourcesRoute,
   SponsorsRoute: SponsorsRoute,
   DemoTanstackQueryRoute: DemoTanstackQueryRoute,
+  ApiMediaAssetRoute: ApiMediaAssetRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -1,0 +1,3 @@
+type CategoriesResult = {
+  categories: PiwigoCategory[];
+};

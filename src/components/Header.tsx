@@ -1,7 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import MainLogo from "../images/1847-mascot-color.png?format=webp";
-// import ThemeToggle from "./ThemeToggle";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -57,16 +56,16 @@ export default function Header() {
           text: "Branding",
           href: "/branding",
         },
+        {
+          text: "Media",
+          href: "/media",
+        },
       ],
     },
     {
       text: "Events",
       href: "/events",
     },
-    // {
-    //   text: "Media",
-    //   href: "/media",
-    // },
   ];
 
   return (
