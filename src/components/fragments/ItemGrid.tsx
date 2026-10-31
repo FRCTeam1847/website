@@ -28,7 +28,7 @@ export default function ItemGrid({ items }: ItemGridProps) {
                   alt={title}
                   width={64}
                   height={64}
-                  className="aspect-square w-full rounded-sm object-fit p-10 bg-muted-foreground"
+                  className="aspect-square w-full rounded-sm object-fit p-10 bg-gray-300"
                 />
               </ItemHeader>
             )}

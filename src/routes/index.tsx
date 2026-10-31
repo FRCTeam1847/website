@@ -10,23 +10,23 @@ export const Route = createFileRoute("/")({ component: App });
 function App() {
   return (
     <main className="page-wrap px-2 py-8">
-      <section className=" rounded-2xl p-0 sm:p-6">
+      <section className=" rounded-2xl  ">
         <div className="flex items-center justify-center ">
           <img
             src={RoundLogo}
             alt="Wyandotte Robotics Logo"
-            className="size-auto"
+            className="max-w-2xs h-auto"
             loading="lazy"
           />
         </div>
-        <h1 className="scroll-m-20 text-center text-4xl font-extrabold tracking-tight text-balance">
-          Welcome to Wyandotte Robotics (WRATH)
+        <h1 className="scroll-m-20 text-center text-4xl md:text-5xl lg:text-4xl font-extrabold tracking-tight text-balance pt-4">
+          Welcome to Wyandotte Robotics
         </h1>
         <div className="rise-in m-6 max-w-3xl mx-auto text-center">
-          <p className="leading-7 not-first:mt-6 text-muted-foreground">
+          <p className="leading-7 not-first:mt-6 text-muted-foreground text-lg">
             FRC Team 1847 - Based in Kansas City, KS at Wyandotte High School
           </p>
-          <p className="leading-7 not-first:mt-6">
+          <p className="leading-7 not-first:mt-6 text-lg">
             Founded in 2006, we design, build, and program competitive robots as
             part of the FIRST Robotics Competition (FRC). Our mission is to
             empower students with real-world STEM skills and create a welcoming,
@@ -46,7 +46,7 @@ function App() {
       <section className="rounded-2xl mt-10 p-6 sm:p-8">
         <QuickFacts />
       </section>
-      <section className="rounded-2xl mt-10 p-6 sm:p-8">
+      {/* <section className="rounded-2xl mt-10 p-6 sm:p-8">
         <Features
           title="Frequently Asked Questions"
           subtitle="Explore the questions below to learn more about our robotics team and discover how joining us can elevate your journey in STEM and engineering."
@@ -130,7 +130,7 @@ function App() {
             },
           ]}
         />
-      </section>
+      </section> */}
     </main>
   );
 }

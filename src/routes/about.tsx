@@ -12,7 +12,7 @@ export const Route = createFileRoute("/about")({
         content: "About Wyandotte Robotics",
       },
       {
-        title: "About — Wyandotte Robotics",
+        title: "About - Wyandotte Robotics",
       },
     ],
   }),
@@ -26,7 +26,7 @@ function About() {
           About Wyandotte Robotics
         </h1>
         <div className="rise-in  m-6 max-w-3xl mx-auto text-center">
-          <p className="leading-7 not-first:mt-6 text-muted-foreground">
+          <p className="leading-7 not-first:mt-6 text-lg text-muted-foreground">
             Learn about our history, mission, and achievements as part of the
             FIRST Robotics Competition. Scroll down for frequently asked
             questions and discover how you can join or support our team!
@@ -77,11 +77,11 @@ function About() {
         </h2>
 
         <section className="island-shell rounded-2xl mt-8 p-0 sm:p-4">
-          <h3 className="scroll-m-20 text-xl font-semibold tracking-tight">
+          <h3 className="scroll-m-20 text-xl font-semibold tracking-tight m-4">
             Our Mission
           </h3>
 
-          <p className="leading-7 not-first:mt-6 text-muted-foreground">
+          <p className="leading-7 not-first:mt-6 text-muted-foreground m-4">
             Our mission is to develop students through hands-on engineering,
             teamwork, and problem solving. Through the FIRST Robotics
             Competition, we create opportunities for every student to build
@@ -90,11 +90,11 @@ function About() {
           </p>
         </section>
         <section className="island-shell rounded-2xl mt-8 p-0 sm:p-4">
-          <h3 className="scroll-m-20 text-xl font-semibold tracking-tight">
+          <h3 className="scroll-m-20 text-xl font-semibold tracking-tight m-4">
             Our Role in FIRST Robotics
           </h3>
 
-          <p className="leading-7 not-first:mt-6 text-muted-foreground">
+          <p className="leading-7 not-first:mt-6 text-muted-foreground m-4">
             As part of the FIRST Robotics community, we share a commitment to
             Gracious Professionalism® and Coopertition®. These values guide our
             efforts to encourage collaboration, mentorship, and fair
@@ -133,21 +133,27 @@ function About() {
           subtitle="Celebrating our success"
           items={[
             {
+              title: "Winners - 2026 Cow Town Throwdown",
+              description:
+                "Competed at the Cow Town Throwdown in Lee's Summit, MO as the second pick of Alliance 1, alongside captain 4646 and 1710.",
+              icon: <TrophyIcon />,
+            },
+            {
               title: "Regional Finalists - 2026 Heartland Regional",
               description:
                 "Competed at the Heartland Regional in Shawnee, KS as the second pick of Alliance 4, alongside captain 9126 and 5801.",
               icon: <TrophyIcon />,
             },
             {
+              title: "Seasons Competed",
+              description: `${new Date().getFullYear() - 2006} seasons since our rookie year in 2006`,
+              icon: <CalendarIcon />,
+            },
+            {
               title: "Regional Finalists - 2025 Heartland Regional",
               description:
                 "Competed at the Heartland Regional in Shawnee, KS as the first pick of Alliance 2, alongside captain 1108 and 9316. Team 1847 finished Rank 5 with a record of 12-5-0 and was eliminated in the Finals.",
               icon: <TrophyIcon />,
-            },
-            {
-              title: "Seasons Competed",
-              description: `${new Date().getFullYear() - 2006} seasons since our rookie year.`,
-              icon: <CalendarIcon />,
             },
             {
               title: "Regional Finalists - 2022 Greater Kansas City Regional",

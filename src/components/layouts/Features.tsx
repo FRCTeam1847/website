@@ -15,7 +15,7 @@ export default function Features({
   return (
     <div className="rise-in text-center pt-16">
       <h2 className="scroll-m-20 pb-2 text-3xl font-semibold">{title}</h2>
-      <p className="leading-7 text-slate-700">{description}</p>
+      <p className="leading-7 text-xl text-slate-700">{description}</p>
 
       <ItemGrid items={items} />
     </div>
