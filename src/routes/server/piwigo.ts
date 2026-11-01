@@ -107,7 +107,7 @@ async function requestPiwigo<T>(
 }
 
 export const getMediaGallery = createServerFn()
-  .inputValidator(validateMediaRequest)
+  .validator(validateMediaRequest)
   .handler(async ({ data }) => {
     const origin = getPiwigoOrigin();
     const categoryParameters: Record<string, string> =

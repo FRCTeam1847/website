@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import MainLogo from "../images/1847-mascot-color.png?format=webp";
+import MainLogo from "../images/1847-mascot-color.png?quality=85&format=webp";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
