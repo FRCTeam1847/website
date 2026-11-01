@@ -18,6 +18,7 @@ import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as SponsorsRouteImport } from './routes/sponsors'
 import { Route as DemoTanstackQueryRouteImport } from './routes/demo/tanstack-query'
 import { Route as ApiMediaAssetRouteImport } from './routes/api/media/asset'
+import { Route as ApiMediaAssetFilenameRouteImport } from './routes/api/media/asset/$filename'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -64,6 +65,11 @@ const ApiMediaAssetRoute = ApiMediaAssetRouteImport.update({
   path: '/api/media/asset',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiMediaAssetFilenameRoute = ApiMediaAssetFilenameRouteImport.update({
+  id: '/$filename',
+  path: '/$filename',
+  getParentRoute: () => ApiMediaAssetRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -74,7 +80,8 @@ export interface FileRoutesByFullPath {
   '/resources': typeof ResourcesRoute
   '/sponsors': typeof SponsorsRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
-  '/api/media/asset': typeof ApiMediaAssetRoute
+  '/api/media/asset': typeof ApiMediaAssetRouteWithChildren
+  '/api/media/asset/$filename': typeof ApiMediaAssetFilenameRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -85,7 +92,8 @@ export interface FileRoutesByTo {
   '/resources': typeof ResourcesRoute
   '/sponsors': typeof SponsorsRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
-  '/api/media/asset': typeof ApiMediaAssetRoute
+  '/api/media/asset': typeof ApiMediaAssetRouteWithChildren
+  '/api/media/asset/$filename': typeof ApiMediaAssetFilenameRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -97,7 +105,8 @@ export interface FileRoutesById {
   '/resources': typeof ResourcesRoute
   '/sponsors': typeof SponsorsRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
-  '/api/media/asset': typeof ApiMediaAssetRoute
+  '/api/media/asset': typeof ApiMediaAssetRouteWithChildren
+  '/api/media/asset/$filename': typeof ApiMediaAssetFilenameRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -111,6 +120,7 @@ export interface FileRouteTypes {
     | '/sponsors'
     | '/demo/tanstack-query'
     | '/api/media/asset'
+    | '/api/media/asset/$filename'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -122,6 +132,7 @@ export interface FileRouteTypes {
     | '/sponsors'
     | '/demo/tanstack-query'
     | '/api/media/asset'
+    | '/api/media/asset/$filename'
   id:
     | '__root__'
     | '/'
@@ -133,6 +144,7 @@ export interface FileRouteTypes {
     | '/sponsors'
     | '/demo/tanstack-query'
     | '/api/media/asset'
+    | '/api/media/asset/$filename'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -144,7 +156,7 @@ export interface RootRouteChildren {
   ResourcesRoute: typeof ResourcesRoute
   SponsorsRoute: typeof SponsorsRoute
   DemoTanstackQueryRoute: typeof DemoTanstackQueryRoute
-  ApiMediaAssetRoute: typeof ApiMediaAssetRoute
+  ApiMediaAssetRoute: typeof ApiMediaAssetRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -212,8 +224,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiMediaAssetRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/media/asset/$filename': {
+      id: '/api/media/asset/$filename'
+      path: '/$filename'
+      fullPath: '/api/media/asset/$filename'
+      preLoaderRoute: typeof ApiMediaAssetFilenameRouteImport
+      parentRoute: typeof ApiMediaAssetRoute
+    }
   }
 }
+
+interface ApiMediaAssetRouteChildren {
+  ApiMediaAssetFilenameRoute: typeof ApiMediaAssetFilenameRoute
+}
+
+const ApiMediaAssetRouteChildren: ApiMediaAssetRouteChildren = {
+  ApiMediaAssetFilenameRoute: ApiMediaAssetFilenameRoute,
+}
+
+const ApiMediaAssetRouteWithChildren = ApiMediaAssetRoute._addFileChildren(
+  ApiMediaAssetRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
@@ -224,7 +255,7 @@ const rootRouteChildren: RootRouteChildren = {
   ResourcesRoute: ResourcesRoute,
   SponsorsRoute: SponsorsRoute,
   DemoTanstackQueryRoute: DemoTanstackQueryRoute,
-  ApiMediaAssetRoute: ApiMediaAssetRoute,
+  ApiMediaAssetRoute: ApiMediaAssetRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

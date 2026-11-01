@@ -5,6 +5,30 @@ import { getMediaGallery } from "./server/piwigo";
 const PAGE_SIZE = 24;
 const MAX_PAGE = 100_000;
 
+function getDownloadFilename(albumName: string, id: number, assetUrl: string) {
+	const assetPath = new URL(
+		assetUrl,
+		"https://website.invalid",
+	).searchParams.get("path");
+	const extension =
+		assetPath?.match(/\.(avif|gif|jpe?g|png|webp)$/i)?.[0].toLowerCase() ?? "";
+	const safeAlbumName =
+		albumName
+			.replace(/[<>:"/\\|?*\p{Cc}]/gu, "-")
+			.replace(/\s+/g, " ")
+			.replace(/[. ]+$/g, "")
+			.trim()
+			.slice(0, 120) || "album";
+
+	return `${safeAlbumName}-${id}${extension}`;
+}
+
+function getMediaAssetUrl(assetUrl: string, filename: string) {
+	const url = new URL(assetUrl, "https://website.invalid");
+	const query = url.searchParams.toString();
+	return `/api/media/asset/${encodeURIComponent(filename)}${query ? `?${query}` : ""}`;
+}
+
 function parseSearchInteger(value: unknown, minimum: number, maximum: number) {
 	const parsed =
 		typeof value === "number"
@@ -153,6 +177,12 @@ function MediaPage() {
 						{images.map((image) => {
 							const thumbnail =
 								image.derivatives?.small?.url ?? image.derivatives?.thumb?.url;
+							const filename = getDownloadFilename(
+								selectedCategory?.name ?? "album",
+								image.id,
+								image.element_url,
+							);
+							const assetUrl = getMediaAssetUrl(image.element_url, filename);
 
 							return (
 								<div
@@ -160,7 +190,7 @@ function MediaPage() {
 									className="group overflow-hidden rounded-lg bg-gray-100"
 								>
 									<a
-										href={image.element_url}
+										href={assetUrl}
 										target="_blank"
 										rel="noreferrer"
 										aria-label={`View full-size ${image.name}`}
@@ -175,8 +205,8 @@ function MediaPage() {
 										)}
 									</a>
 									<a
-										href={image.element_url}
-										download
+										href={assetUrl}
+										download={filename}
 										className="block px-3 py-2 text-center text-sm font-medium hover:underline"
 									>
 										Download original
