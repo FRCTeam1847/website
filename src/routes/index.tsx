@@ -3,14 +3,15 @@ import QuickFacts from "../components/QuickFacts";
 import FacebookComponent from "../components/FacebookComponent";
 import InstagramComponent from "../components/InstagramComponent";
 import Features from "../components/layouts/Features";
-import RoundLogo from "../images/1847-round-color.png?quality=85&format=webp"
+import PiwigoImage from "../components/PiwigoImage";
+import RoundLogo from "../images/1847-round-color.png?quality=85&format=webp";
 
 export const Route = createFileRoute("/")({ component: App });
 
 function App() {
   return (
     <main className="page-wrap px-2 py-8">
-      <section className=" rounded-2xl  ">
+      <section className=" rounded-2xl">
         <div className="flex items-center justify-center ">
           <img
             src={RoundLogo}
@@ -43,10 +44,22 @@ function App() {
           </div>
         </div>
       </section>
-      <section className="rounded-2xl mt-10 p-6 sm:p-8">
+      <section className="rounded-2xl p-2 sm:p-8">
         <QuickFacts />
       </section>
-      {/* <section className="rounded-2xl mt-10 p-6 sm:p-8">
+      <section className="p-2">
+        <figure className="mx-auto max-w-md">
+          <PiwigoImage
+            src="/api/media/asset?path=%2Fupload%2F2026%2F10%2F31%2F20261031160701-fcc07a9d.jpg"
+            alt="Winners of Cow Town ThrowDown 2026"
+            className="aspect-3/4 w-full rounded-2xl object-cover"
+          />
+          <figcaption className="mt-3 text-center text-lg text-muted-foreground">
+            Winners of Cow Town ThrowDown 2026
+          </figcaption>
+        </figure>
+      </section>
+      <section className="rounded-2xl p-2 sm:p-8">
         <Features
           title="Frequently Asked Questions"
           subtitle="Explore the questions below to learn more about our robotics team and discover how joining us can elevate your journey in STEM and engineering."
@@ -130,7 +143,7 @@ function App() {
             },
           ]}
         />
-      </section> */}
+      </section>
     </main>
   );
 }
