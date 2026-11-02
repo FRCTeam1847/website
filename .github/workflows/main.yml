@@ -49,7 +49,7 @@ jobs:
             - name: Cleanup Docker cache
               if: always()
               run: |
-                  docker builder prune --max-used-space 5GB --force
+                  docker builder prune --max-used-space 2GB --force
                   if (( GITHUB_RUN_NUMBER % 4 == 0 )); then
                     docker image prune -f
                   fi
