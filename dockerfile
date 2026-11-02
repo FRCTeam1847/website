@@ -5,7 +5,7 @@ WORKDIR /app
 
 RUN npm install -g pnpm
 
-COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml .env.* ./
 
 RUN --mount=type=cache,id=wyandotte-website-pnpm,target=/pnpm/store \
 	pnpm install --frozen-lockfile --store-dir=/pnpm/store
