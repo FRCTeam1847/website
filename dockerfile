@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM node:26-alpine
+FROM node:26-alpine AS build
 
 WORKDIR /app
 
@@ -13,9 +13,16 @@ RUN --mount=type=cache,id=wyandotte-website-pnpm,target=/pnpm/store \
 COPY . .
 
 RUN pnpm build
+
+FROM node:26-alpine AS runtime
+
+WORKDIR /app
+
 ENV NODE_ENV=production
 ENV HOST=0.0.0.0
 ENV PORT=3000
+
+COPY --from=build /app/.output ./.output
 
 EXPOSE 3000
 
