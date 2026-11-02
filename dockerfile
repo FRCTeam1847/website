@@ -1,12 +1,14 @@
+# syntax=docker/dockerfile:1
 FROM node:26-alpine
 
 WORKDIR /app
 
 RUN npm install -g pnpm
 
-COPY package.json pnpm-lock.yaml pnpm-workspace.yaml .env.* ./
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 
-RUN pnpm install --frozen-lockfile
+RUN --mount=type=cache,id=wyandotte-website-pnpm,target=/pnpm/store \
+	pnpm install --frozen-lockfile --store-dir=/pnpm/store
 
 COPY . .
 
