@@ -71,7 +71,13 @@ function SponsorLogo({ src, name }: { src: string; name: string }) {
 }
 
 export const Route = createFileRoute("/sponsors")({
-  loader: () => getSponsors(),
+  loader: async () => {
+    try {
+      return { sponsors: await getSponsors(), loadFailed: false };
+    } catch {
+      return { sponsors: [], loadFailed: true };
+    }
+  },
   component: RouteComponent,
   head: () => ({
     meta: [
@@ -88,7 +94,7 @@ export const Route = createFileRoute("/sponsors")({
 
 function RouteComponent() {
   const href = "/pdf/WRATH-1847-Sponsor-Packet-2025.pdf";
-  const sponsors = Route.useLoaderData();
+  const { sponsors, loadFailed } = Route.useLoaderData();
   const sponsorsByLevel = sponsors.reduce<Record<string, typeof sponsors>>(
     (groupedSponsors, sponsor) => {
       const level = sponsor.sponsorshipLevel.toLowerCase();
@@ -118,11 +124,19 @@ function RouteComponent() {
       {sponsors.length === 0 ? (
         <section className="text-center">
           <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold first:mt-0">
-            2026-2027 Sponsors coming soon.
+            {loadFailed
+              ? "Sponsor listings are temporarily unavailable."
+              : "2026-2027 Sponsors coming soon."}
           </h2>
-          <div className="flex h-64 items-center justify-center">
-            <ConstructionIcon size={64} />
-          </div>
+          {loadFailed ? (
+            <p className="mt-4 text-muted-foreground">
+              You can still view or download our sponsor packet below.
+            </p>
+          ) : (
+            <div className="flex h-64 items-center justify-center">
+              <ConstructionIcon size={64} />
+            </div>
+          )}
         </section>
       ) : (
         <section className="mx-auto max-w-5xl py-6">
