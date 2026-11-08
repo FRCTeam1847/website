@@ -9,16 +9,17 @@ import {
   ItemTitle,
 } from "../components/ui/item";
 import { CircleIcon, ConstructionIcon, FileTextIcon } from "lucide-react";
-import { useState } from "react";
 import { getSponsors } from "./server/-sponsors";
+import { SponsorLogo } from "../components/ui/SponsorLogo";
+import { getSponsorImageUrl } from "../lib/getSponsorImageUrl";
 
 const sponsorLevels = ["Gold", "Silver", "Bronze", "Supporter"] as const;
 
 const sponsorLevelStyles: Record<(typeof sponsorLevels)[number], string> = {
-  Gold: "border-l-amber-500",
-  Silver: "border-l-slate-400",
-  Bronze: "border-l-orange-700",
-  Supporter: "border-l-(--wyandotte-red)",
+  Gold: "border-l-amber-500 border-r-amber-500",
+  Silver: "border-l-slate-400 border-r-slate-400",
+  Bronze: "border-l-orange-700 border-r-orange-700",
+  Supporter: "border-l-(--wyandotte-red) border-r-(--wyandotte-red)",
 };
 
 const sponsorLevelHeadingStyles: Record<
@@ -31,44 +32,7 @@ const sponsorLevelHeadingStyles: Record<
   Supporter: "border-(--wyandotte-red) text-(--wyandotte-red)",
 };
 
-function getSponsorImageUrl(value: string | null) {
-  const trimmedValue = value?.trim();
-  if (!trimmedValue) return null;
 
-  try {
-    if (/^https?:\/\//i.test(trimmedValue)) {
-      const url = new URL(trimmedValue);
-      return url.protocol === "http:" || url.protocol === "https:"
-        ? url.toString()
-        : null;
-    }
-
-    if (trimmedValue.startsWith("//")) return `https:${trimmedValue}`;
-
-    return `/${trimmedValue.replace(/\\/g, "/").replace(/^\/+/, "")}`;
-  } catch {
-    return null;
-  }
-}
-
-function SponsorLogo({ src, name }: { src: string; name: string }) {
-  const [failed, setFailed] = useState(false);
-  if (failed) return null;
-
-  return (
-    <ItemMedia
-      variant="image"
-      className="size-20 p-2 sm:size-24 [&_img]:object-contain"
-    >
-      <img
-        src={src}
-        alt={`${name} logo`}
-        loading="lazy"
-        onError={() => setFailed(true)}
-      />
-    </ItemMedia>
-  );
-}
 
 export const Route = createFileRoute("/sponsors")({
   loader: async () => {
@@ -178,7 +142,7 @@ function RouteComponent() {
                         <Item
                           key={sponsor.id}
                           variant="outline"
-                          className={`min-h-36 w-full max-w-md flex-col justify-center gap-4 border-l-4 px-6 py-6 text-center ${sponsorLevelStyles[level]}`}
+                          className={`min-h-36 w-full max-w-md flex-col justify-center gap-4 border-l-5 border-r-5 px-6 py-6 text-center ${sponsorLevelStyles[level]}`}
                         >
                           {cardContent}
                         </Item>
@@ -191,7 +155,7 @@ function RouteComponent() {
           </div>
         </section>
       )}
-      <h2 className="scroll-m-20 p-6 text-3xl font-semibold first:mt-0 text-center">
+      {/* <h2 className="scroll-m-20 p-6 text-3xl font-semibold first:mt-0 text-center">
         Sponsor Packet 2025
       </h2>
       <div
@@ -238,7 +202,7 @@ function RouteComponent() {
             </a>
           }
         />
-      </ItemGroup>
+      </ItemGroup> */}
     </main>
   );
 }
