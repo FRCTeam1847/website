@@ -1,0 +1,15 @@
+services:
+  website:
+    build: .
+    restart: unless-stopped
+
+    ports:
+      - "${WEBSITE_PORT:-3001}:3000"
+
+    environment:
+      NODE_ENV: production
+      HOST: 0.0.0.0
+      PORT: 3000
+
+    env_file:
+      - .env.local

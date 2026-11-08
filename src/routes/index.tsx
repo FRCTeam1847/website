@@ -1,87 +1,149 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute } from "@tanstack/react-router";
+import QuickFacts from "../components/QuickFacts";
+import FacebookComponent from "../components/FacebookComponent";
+import InstagramComponent from "../components/InstagramComponent";
+import Features from "../components/layouts/Features";
+import PiwigoImage from "../components/PiwigoImage";
+import RoundLogo from "../images/1847-round-color.png?quality=85&format=webp";
 
-export const Route = createFileRoute('/')({ component: App })
+export const Route = createFileRoute("/")({ component: App });
 
 function App() {
   return (
-    <main className="page-wrap px-4 pb-8 pt-14">
-      <section className="island-shell rise-in relative overflow-hidden rounded-[2rem] px-6 py-10 sm:px-10 sm:py-14">
-        <div className="pointer-events-none absolute -left-20 -top-24 h-56 w-56 rounded-full bg-[radial-gradient(circle,rgba(79,184,178,0.32),transparent_66%)]" />
-        <div className="pointer-events-none absolute -bottom-20 -right-20 h-56 w-56 rounded-full bg-[radial-gradient(circle,rgba(47,106,74,0.18),transparent_66%)]" />
-        <p className="island-kicker mb-3">TanStack Start Base Template</p>
-        <h1 className="display-title mb-5 max-w-3xl text-4xl leading-[1.02] font-bold tracking-tight text-[var(--sea-ink)] sm:text-6xl">
-          Start simple, ship quickly.
+    <main className="page-wrap px-2 py-8">
+      <section className=" rounded-2xl">
+        <div className="flex items-center justify-center ">
+          <img
+            src={RoundLogo}
+            alt="Wyandotte Robotics Logo"
+            className="max-w-2xs h-auto"
+            loading="lazy"
+          />
+        </div>
+        <h1 className="scroll-m-20 text-center text-4xl md:text-5xl lg:text-4xl font-extrabold tracking-tight text-balance pt-4">
+          Welcome to Wyandotte Robotics
         </h1>
-        <p className="mb-8 max-w-2xl text-base text-[var(--sea-ink-soft)] sm:text-lg">
-          This base starter intentionally keeps things light: two routes, clean
-          structure, and the essentials you need to build from scratch.
-        </p>
-        <div className="flex flex-wrap gap-3">
-          <a
-            href="/about"
-            className="rounded-full border border-[rgba(50,143,151,0.3)] bg-[rgba(79,184,178,0.14)] px-5 py-2.5 text-sm font-semibold text-[var(--lagoon-deep)] no-underline transition hover:-translate-y-0.5 hover:bg-[rgba(79,184,178,0.24)]"
-          >
-            About This Starter
-          </a>
-          <a
-            href="https://tanstack.com/router"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-full border border-[rgba(23,58,64,0.2)] bg-white/50 px-5 py-2.5 text-sm font-semibold text-[var(--sea-ink)] no-underline transition hover:-translate-y-0.5 hover:border-[rgba(23,58,64,0.35)]"
-          >
-            Router Guide
-          </a>
+        <div className="rise-in m-6 max-w-3xl mx-auto text-center">
+          <p className="leading-7 not-first:mt-6 text-muted-foreground text-lg">
+            FRC Team 1847 - Based in Kansas City, KS at Wyandotte High School
+          </p>
+          <p className="leading-7 not-first:mt-6 text-lg">
+            Founded in 2006, we design, build, and program competitive robots as
+            part of the FIRST Robotics Competition (FRC). Our mission is to
+            empower students with real-world STEM skills and create a welcoming,
+            innovative team culture.
+          </p>
+          <div className="pt-8">
+            <p className="leading-7 not-first:mt-6">
+              Follow us for updates, team stories, and competition highlights!
+            </p>
+            <div className="mt-3 flex flex-wrap justify-center gap-4">
+              <FacebookComponent />
+              <InstagramComponent />
+            </div>
+          </div>
         </div>
       </section>
-
-      <section className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {[
-          [
-            'Type-Safe Routing',
-            'Routes and links stay in sync across every page.',
-          ],
-          [
-            'Server Functions',
-            'Call server code from your UI without creating API boilerplate.',
-          ],
-          [
-            'Streaming by Default',
-            'Ship progressively rendered responses for faster experiences.',
-          ],
-          [
-            'Tailwind Native',
-            'Design quickly with utility-first styling and reusable tokens.',
-          ],
-        ].map(([title, desc], index) => (
-          <article
-            key={title}
-            className="island-shell feature-card rise-in rounded-2xl p-5"
-            style={{ animationDelay: `${index * 90 + 80}ms` }}
-          >
-            <h2 className="mb-2 text-base font-semibold text-[var(--sea-ink)]">
-              {title}
-            </h2>
-            <p className="m-0 text-sm text-[var(--sea-ink-soft)]">{desc}</p>
-          </article>
-        ))}
+      <section className="rounded-2xl p-2 sm:p-8">
+        <QuickFacts />
       </section>
+      <section className="p-2">
+        <figure className="mx-auto max-w-md">
+          <PiwigoImage
+            src="/api/media/asset?path=%2Fupload%2F2026%2F10%2F31%2F20261031160701-fcc07a9d.jpg"
+            alt="Winners of Cow Town ThrowDown 2026"
+            className="aspect-3/4 w-full rounded-2xl object-cover"
+          />
+          <figcaption className="mt-3 text-center text-lg text-muted-foreground">
+            Winners of Cow Town ThrowDown 2026
+          </figcaption>
+        </figure>
+      </section>
+      <section className="rounded-2xl p-2 sm:p-8">
+        <Features
+          title="Frequently Asked Questions"
+          subtitle="Explore the questions below to learn more about our robotics team and discover how joining us can elevate your journey in STEM and engineering."
+          items={[
+            {
+              title: "What is Wyandotte Robotics?",
+              description:
+                "Wyandotte Robotics, nicknamed WRATH, is FRC Team 1847 based in Kansas City, Kansas. Established in 2006, we are a high school robotics team participating in the FIRST Robotics Competition (FRC) representing Wyandotte High School. Our team designs, builds, and programs robots to compete in annual challenges against other teams worldwide.",
+            },
 
-      <section className="island-shell mt-8 rounded-2xl p-6">
-        <p className="island-kicker mb-2">Quick Start</p>
-        <ul className="m-0 list-disc space-y-2 pl-5 text-sm text-[var(--sea-ink-soft)]">
-          <li>
-            Edit <code>src/routes/index.tsx</code> to customize the home page.
-          </li>
-          <li>
-            Update <code>src/components/Header.tsx</code> and{' '}
-            <code>src/components/Footer.tsx</code> for brand links.
-          </li>
-          <li>
-            Add routes in <code>src/routes</code> and tweak visual tokens in{' '}
-            <code>src/styles.css</code>.
-          </li>
-        </ul>
+            {
+              title: "How can I join Wyandotte Robotics?",
+              description:
+                "We welcome all interested high school students from Wyandotte High School and USD 500 schools. No prior experience is necessary! You can join by attending one of our meetings at Wyandotte High School or by contacting us through our website or social media channels for more information.",
+            },
+
+            {
+              title: "Do I need prior experience in robotics to join the team?",
+              description:
+                "No prior experience is required. We provide training and mentorship in various areas like mechanical design, programming, electronics, and project management. All you need is enthusiasm and a willingness to learn.",
+            },
+
+            {
+              title: "When and where does the team meet?",
+              description:
+                "We meet at Wyandotte High School in Kansas City, Kansas. During the build season (January to April), meetings are held multiple times a week after school. Off-season meetings are less frequent but focus on skill development and community outreach.",
+            },
+
+            {
+              title: "What is the FIRST Robotics Competition (FRC)?",
+              description:
+                "The FIRST Robotics Competition is an international high school robotics competition that combines the excitement of sport with the rigors of science and technology. Teams are challenged to design, build, and program robots to perform tasks in a game that changes each year.",
+            },
+
+            {
+              title:
+                "What has Wyandotte Robotics achieved since its rookie year in 2006?",
+              description:
+                "Since 2006, Wyandotte Robotics has participated in over 30 FRC events including 22 regional competitions. Our team prides itself on growth, both in technical skills and in fostering a collaborative team environment.",
+            },
+
+            {
+              title:
+                "Who can join Wyandotte Robotics? Is it limited to students from Wyandotte High School?",
+              description:
+                "While we are based at Wyandotte High School, students from other schools in the USD 500 school district are welcome to join. We encourage anyone interested in STEM, robotics, or teamwork to become a part of our diverse group.",
+            },
+            {
+              title: "How is the team funded?",
+              description:
+                "Wyandotte Robotics is funded through a combination of school support, sponsorships from local businesses, grants, and fundraising activities organized by team members and their families. These funds cover materials, competition fees, travel expenses, and other operational costs.",
+            },
+            {
+              title: "What is the mission of Wyandotte Robotics?",
+              description:
+                "Our mission is to inspire young people to become leaders in science, technology and their community by engaging them in exciting, mentor-based programs. We aim to build STEM skills, foster innovation, and develop essential life capabilities such as self-confidence, communication, and leadership.",
+            },
+            {
+              title: "How can I support Wyandotte Robotics?",
+              description: (
+                <>
+                  You can support us by:
+                  <br />• <strong>Becoming a Sponsor: </strong>Financial
+                  contributions help us purchase materials and cover competition
+                  fees.
+                  <br />• <strong>Donating Materials or Services:</strong>
+                  In-kind donations are greatly appreciated.
+                  <br />• <strong>Volunteering as a Mentor:</strong> Share your
+                  expertise in engineering, programming, marketing, or project
+                  management.
+                  <br />• <strong>Attending Our Events:</strong> Cheer us on at
+                  competitions or community outreach events.
+                  <br />• <strong>Spreading the Word:</strong>
+                  Follow us on social media and share our mission with others.
+                  <br />
+                  <br />
+                  Contact us through our website for more details on how you can
+                  help.
+                </>
+              ),
+            },
+          ]}
+        />
       </section>
     </main>
-  )
+  );
 }

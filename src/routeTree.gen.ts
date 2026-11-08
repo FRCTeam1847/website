@@ -9,18 +9,50 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as BrandingRouteImport } from './routes/branding'
+import { Route as EventsRouteImport } from './routes/events'
+import { Route as MediaRouteImport } from './routes/media'
+import { Route as ResourcesRouteImport } from './routes/resources'
+import { Route as SponsorsRouteImport } from './routes/sponsors'
 import { Route as DemoTanstackQueryRouteImport } from './routes/demo/tanstack-query'
+import { Route as ApiMediaAssetRouteImport } from './routes/api/media/asset'
+import { Route as ApiMediaAssetFilenameRouteImport } from './routes/api/media/asset/$filename'
 
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const BrandingRoute = BrandingRouteImport.update({
+  id: '/branding',
+  path: '/branding',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EventsRoute = EventsRouteImport.update({
+  id: '/events',
+  path: '/events',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MediaRoute = MediaRouteImport.update({
+  id: '/media',
+  path: '/media',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResourcesRoute = ResourcesRouteImport.update({
+  id: '/resources',
+  path: '/resources',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SponsorsRoute = SponsorsRouteImport.update({
+  id: '/sponsors',
+  path: '/sponsors',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DemoTanstackQueryRoute = DemoTanstackQueryRouteImport.update({
@@ -28,39 +60,114 @@ const DemoTanstackQueryRoute = DemoTanstackQueryRouteImport.update({
   path: '/demo/tanstack-query',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiMediaAssetRoute = ApiMediaAssetRouteImport.update({
+  id: '/api/media/asset',
+  path: '/api/media/asset',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiMediaAssetFilenameRoute = ApiMediaAssetFilenameRouteImport.update({
+  id: '/$filename',
+  path: '/$filename',
+  getParentRoute: () => ApiMediaAssetRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/branding': typeof BrandingRoute
+  '/events': typeof EventsRoute
+  '/media': typeof MediaRoute
+  '/resources': typeof ResourcesRoute
+  '/sponsors': typeof SponsorsRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
+  '/api/media/asset': typeof ApiMediaAssetRouteWithChildren
+  '/api/media/asset/$filename': typeof ApiMediaAssetFilenameRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/branding': typeof BrandingRoute
+  '/events': typeof EventsRoute
+  '/media': typeof MediaRoute
+  '/resources': typeof ResourcesRoute
+  '/sponsors': typeof SponsorsRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
+  '/api/media/asset': typeof ApiMediaAssetRouteWithChildren
+  '/api/media/asset/$filename': typeof ApiMediaAssetFilenameRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/branding': typeof BrandingRoute
+  '/events': typeof EventsRoute
+  '/media': typeof MediaRoute
+  '/resources': typeof ResourcesRoute
+  '/sponsors': typeof SponsorsRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
+  '/api/media/asset': typeof ApiMediaAssetRouteWithChildren
+  '/api/media/asset/$filename': typeof ApiMediaAssetFilenameRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/demo/tanstack-query'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/branding'
+    | '/events'
+    | '/media'
+    | '/resources'
+    | '/sponsors'
+    | '/demo/tanstack-query'
+    | '/api/media/asset'
+    | '/api/media/asset/$filename'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/demo/tanstack-query'
-  id: '__root__' | '/' | '/about' | '/demo/tanstack-query'
+  to:
+    | '/'
+    | '/about'
+    | '/branding'
+    | '/events'
+    | '/media'
+    | '/resources'
+    | '/sponsors'
+    | '/demo/tanstack-query'
+    | '/api/media/asset'
+    | '/api/media/asset/$filename'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/branding'
+    | '/events'
+    | '/media'
+    | '/resources'
+    | '/sponsors'
+    | '/demo/tanstack-query'
+    | '/api/media/asset'
+    | '/api/media/asset/$filename'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  BrandingRoute: typeof BrandingRoute
+  EventsRoute: typeof EventsRoute
+  MediaRoute: typeof MediaRoute
+  ResourcesRoute: typeof ResourcesRoute
+  SponsorsRoute: typeof SponsorsRoute
   DemoTanstackQueryRoute: typeof DemoTanstackQueryRoute
+  ApiMediaAssetRoute: typeof ApiMediaAssetRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/about': {
       id: '/about'
       path: '/about'
@@ -68,11 +175,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/branding': {
+      id: '/branding'
+      path: '/branding'
+      fullPath: '/branding'
+      preLoaderRoute: typeof BrandingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/events': {
+      id: '/events'
+      path: '/events'
+      fullPath: '/events'
+      preLoaderRoute: typeof EventsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/media': {
+      id: '/media'
+      path: '/media'
+      fullPath: '/media'
+      preLoaderRoute: typeof MediaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/resources': {
+      id: '/resources'
+      path: '/resources'
+      fullPath: '/resources'
+      preLoaderRoute: typeof ResourcesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sponsors': {
+      id: '/sponsors'
+      path: '/sponsors'
+      fullPath: '/sponsors'
+      preLoaderRoute: typeof SponsorsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/demo/tanstack-query': {
@@ -82,14 +217,55 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DemoTanstackQueryRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/media/asset': {
+      id: '/api/media/asset'
+      path: '/api/media/asset'
+      fullPath: '/api/media/asset'
+      preLoaderRoute: typeof ApiMediaAssetRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/media/asset/$filename': {
+      id: '/api/media/asset/$filename'
+      path: '/$filename'
+      fullPath: '/api/media/asset/$filename'
+      preLoaderRoute: typeof ApiMediaAssetFilenameRouteImport
+      parentRoute: typeof ApiMediaAssetRoute
+    }
   }
 }
+
+interface ApiMediaAssetRouteChildren {
+  ApiMediaAssetFilenameRoute: typeof ApiMediaAssetFilenameRoute
+}
+
+const ApiMediaAssetRouteChildren: ApiMediaAssetRouteChildren = {
+  ApiMediaAssetFilenameRoute: ApiMediaAssetFilenameRoute,
+}
+
+const ApiMediaAssetRouteWithChildren = ApiMediaAssetRoute._addFileChildren(
+  ApiMediaAssetRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  BrandingRoute: BrandingRoute,
+  EventsRoute: EventsRoute,
+  MediaRoute: MediaRoute,
+  ResourcesRoute: ResourcesRoute,
+  SponsorsRoute: SponsorsRoute,
   DemoTanstackQueryRoute: DemoTanstackQueryRoute,
+  ApiMediaAssetRoute: ApiMediaAssetRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { createStart } from '@tanstack/react-start'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+  }
+}
