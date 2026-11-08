@@ -69,7 +69,7 @@ export default function Header() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 border-b border-(--line) px-4 backdrop-blur-lg">
+    <header className="sticky top-0 z-50 border-b border-(--line) bg-background/80 px-4 backdrop-blur-lg">
       <nav
         ref={navRef}
         className="flex flex-wrap items-center justify-between gap-x-2 gap-y-3 py-3 sm:py-4"
