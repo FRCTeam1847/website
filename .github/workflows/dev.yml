@@ -1,0 +1,55 @@
+name: Build & Deploy Wyandotte Robotics (Compose)
+
+on:
+    workflow_dispatch:
+    push:
+        branches:
+            - dev
+
+jobs:
+    build-and-deploy:
+        runs-on: self-hosted
+
+        env:
+            ENV_FILE_PATH: /etc/wyandotte-robotics/.env.local
+            COMPOSE_PROJECT_NAME: wyandotte-robotics
+            DOCKER_BUILDKIT: 1
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v7
+
+            - name: Verify server env file exists
+              run: |
+                  if [ ! -f "$ENV_FILE_PATH" ]; then
+                  echo "Env file not found: $ENV_FILE_PATH"
+                  exit 1
+                  fi
+              shell: bash
+
+            - name: Copy env file into build context
+              run: |
+                  cp "$ENV_FILE_PATH" "$GITHUB_WORKSPACE/.env.local"
+              shell: bash
+
+            - name: Build & Deploy
+              run: |
+                  docker compose build
+                  docker compose up -d --remove-orphans
+
+            - name: Check site health
+              run: |
+                  echo "Waiting for site to respond on port 3001..."
+                  for i in {1..10}; do
+                    curl -sf http://localhost:3001/ && exit 0
+                    sleep 3
+                  done
+                  echo "Site did not respond!" && exit 1
+
+            - name: Cleanup Docker cache
+              if: always()
+              run: |
+                  docker builder prune --max-used-space 2GB --force
+                  if (( GITHUB_RUN_NUMBER % 4 == 0 )); then
+                    docker image prune -f
+                  fi

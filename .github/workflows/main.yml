@@ -1,18 +1,19 @@
-name: Build & Deploy Wyandotte Robotics (Compose)
+name: Build & Deploy Wyandotte Robotics Production (Compose)
 
 on:
     workflow_dispatch:
     push:
         branches:
-            - dev
+            - main
 
 jobs:
     build-and-deploy:
         runs-on: self-hosted
 
         env:
-            ENV_FILE_PATH: /etc/wyandotte-robotics/.env.local
-            COMPOSE_PROJECT_NAME: wyandotte-robotics
+            ENV_FILE_PATH: /etc/wyandotte-robotics/.env.production
+            COMPOSE_PROJECT_NAME: wyandotte-robotics-production
+            WEBSITE_PORT: 3003
             DOCKER_BUILDKIT: 1
 
         steps:
@@ -39,9 +40,9 @@ jobs:
 
             - name: Check site health
               run: |
-                  echo "Waiting for site to respond on port 3001..."
+                  echo "Waiting for site to respond on port $WEBSITE_PORT..."
                   for i in {1..10}; do
-                    curl -sf http://localhost:3001/ && exit 0
+                    curl -sf "http://localhost:$WEBSITE_PORT/" && exit 0
                     sleep 3
                   done
                   echo "Site did not respond!" && exit 1

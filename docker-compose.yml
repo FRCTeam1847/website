@@ -1,11 +1,10 @@
 services:
   website:
     build: .
-    container_name: wyandotte-robotics-website
     restart: unless-stopped
 
     ports:
-      - "3001:3000"
+      - "${WEBSITE_PORT:-3001}:3000"
 
     environment:
       NODE_ENV: production
